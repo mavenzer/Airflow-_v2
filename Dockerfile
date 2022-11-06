@@ -31,6 +31,7 @@ RUN pip install --upgrade setuptools
 
 RUN pip install -U pip setuptools wheel \
     && pip install pytz \
+    && pip install cython
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
