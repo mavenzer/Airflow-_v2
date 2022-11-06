@@ -2,7 +2,7 @@ FROM python:3.8-slim-buster
 
 LABEL maintainer="Soumen Sinha Mahapatra"
 
-USER 1001
+USER root
 
 ENV PIP_INDEX_URL='https://pypi.python.org/simple/'
 
