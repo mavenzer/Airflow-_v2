@@ -27,6 +27,7 @@ RUN groupadd --gid "${AIRFLOW_GID}" "airflow" && \
     useradd "airflow" --uid "${AIRFLOW_UID}" \
     --gid "${AIRFLOW_GID}" \
     --home "${AIRFLOW_USER_HOME_DIR}"
+RUN pip install --upgrade setuptools
 
 RUN pip install -U pip setuptools wheel \
     && pip install pytz \
