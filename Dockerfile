@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.9-slim-bullseye
 
 LABEL maintainer="Soumen Sinha Mahapatra"
 
@@ -28,7 +28,7 @@ RUN groupadd --gid "${AIRFLOW_GID}" "airflow" && \
     --gid "${AIRFLOW_GID}" \
     --home "${AIRFLOW_USER_HOME_DIR}"
     
-RUN yum install default-libmysqlclient-dev    
+RUN apt-get install default-libmysqlclient-dev    
 RUN pip install --upgrade setuptools
 
 RUN pip install -U pip setuptools wheel \
