@@ -7,7 +7,7 @@ USER root
 ENV PIP_INDEX_URL='https://pypi.python.org/simple/'
 
 # Airflow
-ARG AIRFLOW_VERSION=2.0.0
+ARG AIRFLOW_VERSION=1.10.15
 ARG AIRFLOW_USER_HOME_DIR=/home/airflow
 ARG AIRFLOW_EXTRAS="crypto,postgres,jdbc,mysql,password,kubernetes"
 ARG ADDITIONAL_AIRFLOW_EXTRAS=""
