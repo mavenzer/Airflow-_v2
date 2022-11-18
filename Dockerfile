@@ -28,7 +28,7 @@ RUN groupadd --gid "${AIRFLOW_GID}" "airflow" && \
     --gid "${AIRFLOW_GID}" \
     --home "${AIRFLOW_USER_HOME_DIR}"
     
-RUN apt-get install default-libmysqlclient-dev    
+RUN yum install default-libmysqlclient-dev    
 RUN pip install --upgrade setuptools
 
 RUN pip install -U pip setuptools wheel \
