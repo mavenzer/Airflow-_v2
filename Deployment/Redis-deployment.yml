@@ -1,0 +1,27 @@
+# The name of the Redis deployment, which will be used by OpenShift to identify the deployment
+name: redis
+
+# The number of replicas to deploy. You can adjust this number to scale up or down the number of Redis instances
+replicas: 1
+
+# The image to use for the Redis instances. You can use the official Redis image or a custom image
+# that includes any custom dependencies or settings
+image: redis:latest
+
+# The container port that the Redis instances will listen on
+containerPort: 6379
+
+# The resources to allocate to the Redis instances, such as CPU and memory
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# The environment variables to set in the Redis instances. You can use this section to pass in any
+# necessary Redis settings, such as the password for the Redis server
+env:
+  - name: REDIS_PASSWORD
+    value: "secret_password"
