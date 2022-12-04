@@ -1,0 +1,33 @@
+# The name of the airflow deployment, which will be used by OpenShift to identify the deployment
+name: airflow-worker
+
+# The number of replicas to deploy. You can adjust this number to scale up or down the number of worker nodes
+replicas: 1
+
+# The image to use for the worker nodes. You can use the official Apache Airflow image or a custom image
+# that includes any custom dependencies or settings
+image: apache/airflow:latest
+
+# The container port that the worker nodes will listen on
+containerPort: 8793
+
+# The resources to allocate to the worker nodes, such as CPU and memory
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# The environment variables to set in the worker nodes. You can use this section to pass in any
+# necessary Airflow settings, such as the location of the database and the executor to use
+env:
+  - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+    value: "mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CELERY__BROKER_URL
+    value: "sqla+mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CELERY__RESULT_BACKEND
+    value: "db+mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CORE__EXECUTOR
+    value: "CeleryExecutor"
