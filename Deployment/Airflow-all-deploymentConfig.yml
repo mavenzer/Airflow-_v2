@@ -1,0 +1,74 @@
+# The name of the deployment, which will be used by OpenShift to identify the deployment
+name: airflow
+
+# The number of replicas to deploy for each service. You can adjust these numbers to scale up or down the number of instances for each service
+webserver_replicas: 1
+statsd_replicas: 1
+scheduler_replicas: 1
+worker_replicas: 1
+redis_replicas: 1
+
+# The images to use for each service. You can use the official Apache Airflow images or custom images that include any custom dependencies or settings
+webserver_image: apache/airflow:latest
+statsd_image: apache/airflow:latest
+scheduler_image: apache/airflow:latest
+worker_image: apache/airflow:latest
+redis_image: redis:latest
+
+# The container ports that each service will listen on
+webserver_container_port: 8080
+statsd_container_port: 8125
+scheduler_container_port: 8793
+worker_container_port: 8793
+redis_container_port: 6379
+
+# The resources to allocate to each service, such as CPU and memory
+webserver_resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+statsd_resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+scheduler_resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+worker_resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+redis_resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# The environment variables to set in each service. You can use this section to pass in any necessary Airflow and Redis settings, such as the location of the database and the executor to use
+webserver_env:
+  - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+    value: "mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CORE__EXECUTOR
+    value: "CeleryExecutor"
+  - name: AIRFLOW__CELERY__BROKER_URL
+    value: "sqla+mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CELERY__RESULT_BACKEND
+    value: "db+mysql://airflow:airflow@mysql/airflow"
+statsd_env:
+  - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+    value: "mysql://airflow:
