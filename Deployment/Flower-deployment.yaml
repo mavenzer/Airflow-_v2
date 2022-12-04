@@ -1,0 +1,33 @@
+# The name of the Flower deployment, which will be used by OpenShift to identify the deployment
+name: flower
+
+# The number of replicas to deploy. You can adjust this number to scale up or down the number of Flower instances
+replicas: 1
+
+# The image to use for the Flower instances. You can use the official Flower image or a custom image
+# that includes any custom dependencies or settings
+image: apache/airflow:latest
+
+# The container port that the Flower instances will listen on
+containerPort: 5555
+
+# The resources to allocate to the Flower instances, such as CPU and memory
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# The environment variables to set in the Flower instances. You can use this section to pass in any
+# necessary Flower settings, such as the location of the Airflow database and the URL for the Celery broker
+env:
+  - name: FLOWER_BASIC_AUTH
+    value: "username:password"
+  - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+    value: "mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CELERY__BROKER_URL
+    value: "sqla+mysql://airflow:airflow@mysql/airflow"
+  - name: AIRFLOW__CELERY__RESULT_BACKEND
+    value: "db+mysql://airflow:airflow@mysql/airflow"
