@@ -2,6 +2,7 @@
 name: airflow
 
 # The number of replicas to deploy for each service. You can adjust these numbers to scale up or down the number of instances for each service
+# The standard number of Replicas can be changed by default and it can be updated according to the certain use cases.
 webserver_replicas: 1
 statsd_replicas: 1
 scheduler_replicas: 1
