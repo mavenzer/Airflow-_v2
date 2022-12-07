@@ -1,4 +1,4 @@
-# The name of the deployment, which will be used by OpenShift to identify the deployment
+# The name of the deployment, which will be used by OpenShift to identify the deployment and the label it.
 name: airflow
 
 # The number of replicas to deploy for each service. You can adjust these numbers to scale up or down the number of instances for each service
