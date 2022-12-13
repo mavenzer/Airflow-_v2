@@ -1,6 +1,6 @@
-Here is a simple example of how you might implement identity resolution using Python and the recordlinkage library:
+#Here is a simple example of how you might implement identity resolution using Python and the recordlinkage library:
 
-Copy code
+
 # import the necessary libraries
 import recordlinkage
 import pandas as pd
