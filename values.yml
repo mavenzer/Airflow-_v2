@@ -1,5 +1,6 @@
 
 # https://github.com/apache/airflow/blob/main/chart/values.yaml
+# Update the Images
 
 # User and group of airflow user
 uid: 50000
