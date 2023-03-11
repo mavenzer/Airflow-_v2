@@ -1,13 +1,192 @@
-apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
 metadata:
   name: airflow-webserver
-  namespace: ad8c-d
+  namespace: soumen-dev
+  uid: 20f96b0b-ca58-4c99-af2a-612fa5ac379b
+  resourceVersion: '465424395'
+  generation: 2
+  creationTimestamp: '2023-03-11T17:57:26Z'
   labels:
     app: airflow
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2023-03-11T17:57:26Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector':
+            .: {}
+            'f:app': {}
+            'f:deploymentconfig': {}
+          'f:strategy':
+            'f:activeDeadlineSeconds': {}
+            'f:rollingParams':
+              .: {}
+              'f:intervalSeconds': {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+              'f:timeoutSeconds': {}
+              'f:updatePeriodSeconds': {}
+            'f:type': {}
+          'f:template':
+            .: {}
+            'f:metadata':
+              .: {}
+              'f:creationTimestamp': {}
+              'f:labels':
+                .: {}
+                'f:app': {}
+                'f:deploymentconfig': {}
+                'f:name': {}
+            'f:spec':
+              .: {}
+              'f:containers':
+                .: {}
+                'k:{"name":"airflow-webserver"}':
+                  .: {}
+                  'f:env':
+                    'k:{"name":"AIRFLOW_USERNAME"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__WEBSERVER__BASE_URL"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__CORE__SQL_ALCHEMY_CONN"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW_PASSWORD"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW_LDAP_ENABLE"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW_WEBSERVER_PORT_NUMBER"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW_LOAD_EXAMPLES"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    .: {}
+                    'k:{"name":"AIRFLOW__WEBSERVER__SECRET_KEY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__CORE__FERNET_KEY"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__CELERY__BROKER_URL"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW_UID"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__CORE__EXECUTOR"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                    'k:{"name":"AIRFLOW__CELERY__RESULT_BACKEND"}':
+                      .: {}
+                      'f:name': {}
+                      'f:value': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                  'f:ports':
+                    .: {}
+                    'k:{"containerPort":8080,"protocol":"TCP"}':
+                      .: {}
+                      'f:containerPort': {}
+                      'f:protocol': {}
+                  'f:resources':
+                    .: {}
+                    'f:limits':
+                      .: {}
+                      'f:memory': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2023-03-11T17:57:27Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:template':
+            'f:spec':
+              'f:containers':
+                'k:{"name":"airflow-webserver"}':
+                  'f:image': {}
+          'f:triggers': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: apps.openshift.io/v1
+      time: '2023-03-11T18:01:44Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:updatedReplicas': {}
+          'f:readyReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:details':
+            .: {}
+            'f:causes': {}
+            'f:message': {}
+          'f:replicas': {}
+          'f:availableReplicas': {}
+          'f:observedGeneration': {}
+          'f:unavailableReplicas': {}
+          'f:latestVersion': {}
+      subresource: status
 spec:
   strategy:
     type: Rolling
+    rollingParams:
+      updatePeriodSeconds: 1
+      intervalSeconds: 1
+      timeoutSeconds: 600
+      maxUnavailable: 25%
+      maxSurge: 25%
+    resources: {}
+    activeDeadlineSeconds: 21600
   triggers:
     - type: ConfigChange
     - type: ImageChange
@@ -17,79 +196,91 @@ spec:
           - airflow-webserver
         from:
           kind: ImageStreamTag
-          namespace: ad8c-d
-          name: "airflow:2.2.3-python3.9"
+          namespace: soumen-dev
+          name: 'airflow-config:2.3'
+        lastTriggeredImage: >-
+          image-registry.openshift-image-registry.svc:5000/soumen-dev/airflow-config@sha256:5d26648191b58b970eb6fc100ee64db552facd14c4f93d56a75f20b56164acfe
   replicas: 1
   revisionHistoryLimit: 10
-  paused: false
+  test: false
   selector:
     app: airflow
     deploymentconfig: airflow-webserver
   template:
     metadata:
+      creationTimestamp: null
       labels:
-        name: airflow-webserver
         app: airflow
         deploymentconfig: airflow-webserver
+        name: airflow-webserver
     spec:
-      volumes:
-        - name: airflow-dags
-          persistentVolumeClaim:
-            claimName: airflow-dags
-        - name: airflow-logs
-          persistentVolumeClaim:
-            claimName: airflow-logs
-        - name: airflow-redis
-          persistentVolumeClaim:
-            claimName: airflow-redis
-          
       containers:
         - name: airflow-webserver
-          image: image-registry.openshift-image-registry.svc:5000/ad8c-d/airflow:2.2.3-python3.9
-          resources:
-            limits:
-              memory: 4Gi
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/soumen-dev/airflow-config@sha256:5d26648191b58b970eb6fc100ee64db552facd14c4f93d56a75f20b56164acfe
+          ports:
+            - containerPort: 8080
+              protocol: TCP
           env:
-            - name : AIRFLOW__CORE__SQL_ALCHEMY_CONN
-              value: postgresql+psycopg2://airflow:test-pass@airflow-db/airflow
+            - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              value: 'postgresql+psycopg2://airflow:test-pass@airflow-db/airflow'
             - name: AIRFLOW__CORE__EXECUTOR
               value: CeleryExecutor
-            - name : AIRFLOW__CELERY__BROKER_URL
-              value: redis://:test-pass@air-redis:6379/0
-            - name:  AIRFLOW__CELERY__RESULT_BACKEND
-              value: db+postgresql://airflow:test-pass@airflow-db/airflow
+            - name: AIRFLOW__CELERY__BROKER_URL
+              value: 'redis://:test-pass@air-redis:6379/0'
+            - name: AIRFLOW__CELERY__RESULT_BACKEND
+              value: 'db+postgresql://airflow:test-pass@airflow-db/airflow'
             - name: AIRFLOW__CORE__FERNET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: airflow-helm
-                  key: airflow-fernet-key
+              value: yYoAHmwIaGXiBXtUtOIGskUn-Q24keddQj0Zn7f4plg=
             - name: AIRFLOW__WEBSERVER__SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: airflow-helm
-                  key: airflow-secret-key
+              value: 94b9d6124ff2e9a5783d94dc7aa3641ebb8929bdbbf2f3989402f9e400ac
             - name: AIRFLOW_LOAD_EXAMPLES
-              value: "no"
+              value: 'no'
             - name: AIRFLOW_WEBSERVER_PORT_NUMBER
-              value: "8080"
+              value: '8080'
             - name: AIRFLOW_USERNAME
               value: user
             - name: AIRFLOW_PASSWORD
               value: user
             - name: AIRFLOW__WEBSERVER__BASE_URL
-              value: "http://airflow-image-ad8c-d.router-default.apps.ocp01.airbus.corp"
+              value: >-
+                http://test-airflow-soumen-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
             - name: AIRFLOW_LDAP_ENABLE
-              value: "no"
-            - name:  AIRFLOW_UID
-              value: "50000"
-
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-          volumeMounts:
-            - name: airflow-dags
-              mountPath: /opt/airflow/dags
-            - name: airflow-logs
-              mountPath: /opt/airflow/logs
-            - name: airflow-redis
-              mountPath: /var/lib/redis/data
+              value: 'no'
+            - name: AIRFLOW_UID
+              value: '50000'
+          resources:
+            limits:
+              memory: 4Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+status:
+  observedGeneration: 2
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
+  availableReplicas: 1
+  unavailableReplicas: 0
+  latestVersion: 1
+  updatedReplicas: 1
+  conditions:
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2023-03-11T17:57:45Z'
+      lastTransitionTime: '2023-03-11T17:57:45Z'
+      reason: NewReplicationControllerAvailable
+      message: replication controller "airflow-webserver-1" successfully rolled out
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2023-03-11T18:01:44Z'
+      lastTransitionTime: '2023-03-11T18:01:44Z'
+      message: Deployment config has minimum availability.
+  replicas: 1
+  readyReplicas: 1
