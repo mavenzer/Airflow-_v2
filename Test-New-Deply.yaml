@@ -1,0 +1,95 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: airflow-webserver
+  namespace: ad8c-d
+  labels:
+    app: airflow
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - airflow-webserver
+        from:
+          kind: ImageStreamTag
+          namespace: ad8c-d
+          name: "airflow:2.2.3-python3.9"
+  replicas: 1
+  revisionHistoryLimit: 10
+  paused: false
+  selector:
+    app: airflow
+    deploymentconfig: airflow-webserver
+  template:
+    metadata:
+      labels:
+        name: airflow-webserver
+        app: airflow
+        deploymentconfig: airflow-webserver
+    spec:
+      volumes:
+        - name: airflow-dags
+          persistentVolumeClaim:
+            claimName: airflow-dags
+        - name: airflow-logs
+          persistentVolumeClaim:
+            claimName: airflow-logs
+        - name: airflow-redis
+          persistentVolumeClaim:
+            claimName: airflow-redis
+          
+      containers:
+        - name: airflow-webserver
+          image: image-registry.openshift-image-registry.svc:5000/ad8c-d/airflow:2.2.3-python3.9
+          resources:
+            limits:
+              memory: 4Gi
+          env:
+            - name : AIRFLOW__CORE__SQL_ALCHEMY_CONN
+              value: postgresql+psycopg2://airflow:test-pass@airflow-db/airflow
+            - name: AIRFLOW__CORE__EXECUTOR
+              value: CeleryExecutor
+            - name : AIRFLOW__CELERY__BROKER_URL
+              value: redis://:test-pass@air-redis:6379/0
+            - name:  AIRFLOW__CELERY__RESULT_BACKEND
+              value: db+postgresql://airflow:test-pass@airflow-db/airflow
+            - name: AIRFLOW__CORE__FERNET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-fernet-key
+            - name: AIRFLOW__WEBSERVER__SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-secret-key
+            - name: AIRFLOW_LOAD_EXAMPLES
+              value: "no"
+            - name: AIRFLOW_WEBSERVER_PORT_NUMBER
+              value: "8080"
+            - name: AIRFLOW_USERNAME
+              value: user
+            - name: AIRFLOW_PASSWORD
+              value: user
+            - name: AIRFLOW__WEBSERVER__BASE_URL
+              value: "http://airflow-image-ad8c-d.router-default.apps.ocp01.airbus.corp"
+            - name: AIRFLOW_LDAP_ENABLE
+              value: "no"
+            - name:  AIRFLOW_UID
+              value: "50000"
+
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: airflow-dags
+              mountPath: /opt/airflow/dags
+            - name: airflow-logs
+              mountPath: /opt/airflow/logs
+            - name: airflow-redis
+              mountPath: /var/lib/redis/data
