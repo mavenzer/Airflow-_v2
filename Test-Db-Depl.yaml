@@ -1,0 +1,74 @@
+
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: airflow-db
+  namespace: ad8c-d
+  labels:
+    app: airflow
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+    - type: ConfigChange
+  replicas: 1
+  revisionHistoryLimit: 10
+  paused: false
+  selector:
+    app: airflow
+    deploymentconfig: airflow-db
+  template:
+    metadata:
+      labels:
+        name: airflow-db
+        app: airflow
+        deploymentconfig: airflow-db
+    spec:
+      volumes:
+        - name: airflow-db
+          persistentVolumeClaim:
+            claimName: airflow-db
+      containers:
+        - name: airflow-db
+          image: image-registry.openshift-image-registry.svc:5000/openshift/airbus-postgresql-13-rhel8
+          resources:
+            limits:
+              memory: 512Mi
+          env:
+            - name: POSTGRESQL_USER
+              value: airflow
+            - name: POSTGRESQL_PASSWORD
+              value: test-pass
+            - name: POSTGRESQL_ROOT_PASSWORD
+              value : test-pass
+            - name: POSTGRESQL_DATABASE 
+              value: airflow
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          volumeMounts:
+            - name: airflow-db
+              mountPath: /var/lib/postgresql/data
+          securityContext:
+            capabilities: {}
+            privileged: false
+          livenessProbe:
+            exec:
+              command:
+              - pg_isready
+              - -h
+              - localhost
+              - -U
+              - postgres
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - pg_isready
+              - -h
+              - localhost
+              - -U
+              - postgres
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
