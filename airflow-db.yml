@@ -29,7 +29,7 @@ spec:
             claimName: airflow-db
       containers:
         - name: airflow-db
-          image: registry.redhat.io/rhscl/postgresql-94-rhel7
+          image: docker.io/postgres:latest
           resources:
             limits:
               memory: 512Mi
