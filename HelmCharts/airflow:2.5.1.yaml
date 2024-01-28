@@ -1,0 +1,2533 @@
+NAME: airflow-helm
+LAST DEPLOYED: Sun Jan 28 13:05:18 2024
+NAMESPACE: ad8c-d
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+USER-SUPPLIED VALUES:
+{}
+
+COMPUTED VALUES:
+auth:
+  existingSecret: ""
+  fernetKey: ""
+  password: ""
+  secretKey: ""
+  username: user
+clusterDomain: cluster.local
+common:
+  exampleValue: common-chart
+  global:
+    imagePullSecrets: []
+    imageRegistry: ""
+    storageClass: ""
+commonAnnotations: {}
+commonLabels: {}
+configuration: ""
+dags:
+  existingConfigmap: ""
+  image:
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/bitnami-shell
+    tag: 11-debian-11-r74
+diagnosticMode:
+  args:
+  - infinity
+  command:
+  - sleep
+  enabled: false
+executor: CeleryExecutor
+existingConfigmap: ""
+externalDatabase:
+  database: bitnami_airflow
+  existingSecret: ""
+  existingSecretPasswordKey: ""
+  host: localhost
+  password: ""
+  port: 5432
+  user: bn_airflow
+externalRedis:
+  existingSecret: ""
+  existingSecretPasswordKey: ""
+  host: localhost
+  password: ""
+  port: 6379
+  username: ""
+extraDeploy: []
+extraEnvVars: []
+extraEnvVarsCM: ""
+extraEnvVarsSecret: ""
+extraEnvVarsSecrets: []
+extraVolumeMounts: []
+extraVolumes: []
+fullnameOverride: ""
+git:
+  clone:
+    args: []
+    command: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    resources: {}
+  dags:
+    enabled: false
+    repositories:
+    - branch: ""
+      name: ""
+      path: ""
+      repository: ""
+  image:
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/git
+    tag: 2.39.1-debian-11-r1
+  plugins:
+    enabled: false
+    repositories:
+    - branch: ""
+      name: ""
+      path: ""
+      repository: ""
+  sync:
+    args: []
+    command: []
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    interval: 60
+    resources: {}
+global:
+  imagePullSecrets: []
+  imageRegistry: ""
+  storageClass: ""
+ingress:
+  annotations: {}
+  apiVersion: ""
+  enabled: false
+  extraHosts: []
+  extraPaths: []
+  extraRules: []
+  extraTls: []
+  hostname: airflow.local
+  ingressClassName: ""
+  path: /
+  pathType: ImplementationSpecific
+  secrets: []
+  selfSigned: false
+  tls: false
+initContainers: []
+kubeVersion: ""
+ldap:
+  basedn: dc=example,dc=org
+  binddn: cn=admin,dc=example,dc=org
+  bindpw: ""
+  enabled: false
+  rolesMapping: '{ "cn=All,ou=Groups,dc=example,dc=org": ["User"], "cn=Admins,ou=Groups,dc=example,dc=org":
+    ["Admin"], }'
+  rolesSyncAtLogin: "True"
+  searchAttribute: cn
+  tls:
+    CAFilename: ""
+    allowSelfSigned: true
+    certificatesMountPath: /opt/bitnami/airflow/conf/certs
+    certificatesSecret: ""
+    enabled: false
+  uri: ldap://ldap_server:389
+  userRegistration: "True"
+  userRegistrationRole: Public
+loadExamples: false
+metrics:
+  affinity: {}
+  containerPorts:
+    http: 9112
+  containerSecurityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 1001
+  enabled: false
+  extraEnvVars: []
+  extraEnvVarsCM: ""
+  extraEnvVarsSecret: ""
+  hostAliases: []
+  image:
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/airflow-exporter
+    tag: 0.20220314.0-debian-11-r82
+  lifecycleHooks: {}
+  nodeAffinityPreset:
+    key: ""
+    type: ""
+    values: []
+  nodeSelector: {}
+  podAffinityPreset: ""
+  podAnnotations: {}
+  podAntiAffinityPreset: soft
+  podLabels: {}
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  resources:
+    limits: {}
+    requests: {}
+  schedulerName: ""
+  service:
+    annotations:
+      prometheus.io/port: '{{ .Values.metrics.service.ports.http }}'
+      prometheus.io/scrape: "true"
+    clusterIP: ""
+    ports:
+      http: 9112
+    sessionAffinity: None
+  serviceMonitor:
+    enabled: false
+    honorLabels: false
+    interval: ""
+    jobLabel: ""
+    labels: {}
+    metricRelabelings: []
+    namespace: ""
+    relabelings: []
+    scrapeTimeout: ""
+    selector: {}
+  tolerations: []
+nameOverride: ""
+postgresql:
+  architecture: standalone
+  audit:
+    clientMinMessages: error
+    logConnections: false
+    logDisconnections: false
+    logHostname: false
+    logLinePrefix: ""
+    logTimezone: ""
+    pgAuditLog: ""
+    pgAuditLogCatalog: "off"
+  auth:
+    database: bitnami_airflow
+    enablePostgresUser: false
+    existingSecret: ""
+    password: ""
+    postgresPassword: ""
+    replicationPassword: ""
+    replicationUsername: repl_user
+    secretKeys:
+      adminPasswordKey: postgres-password
+      replicationPasswordKey: replication-password
+      userPasswordKey: password
+    usePasswordFiles: false
+    username: bn_airflow
+  clusterDomain: cluster.local
+  common:
+    exampleValue: common-chart
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      postgresql:
+        auth:
+          database: ""
+          existingSecret: ""
+          password: ""
+          postgresPassword: ""
+          secretKeys:
+            adminPasswordKey: ""
+            replicationPasswordKey: ""
+            userPasswordKey: ""
+          username: ""
+        service:
+          ports:
+            postgresql: ""
+      storageClass: ""
+  commonAnnotations: {}
+  commonLabels: {}
+  containerPorts:
+    postgresql: 5432
+  diagnosticMode:
+    args:
+    - infinity
+    command:
+    - sleep
+    enabled: false
+  enabled: true
+  extraDeploy: []
+  fullnameOverride: ""
+  global:
+    imagePullSecrets: []
+    imageRegistry: ""
+    postgresql:
+      auth:
+        database: ""
+        existingSecret: ""
+        password: ""
+        postgresPassword: ""
+        secretKeys:
+          adminPasswordKey: ""
+          replicationPasswordKey: ""
+          userPasswordKey: ""
+        username: ""
+      service:
+        ports:
+          postgresql: ""
+    storageClass: ""
+  image:
+    debug: false
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 15.1.0-debian-11-r20
+  kubeVersion: ""
+  ldap:
+    basedn: ""
+    binddn: ""
+    bindpw: ""
+    enabled: false
+    port: ""
+    prefix: ""
+    scheme: ""
+    searchAttribute: ""
+    searchFilter: ""
+    server: ""
+    suffix: ""
+    tls:
+      enabled: false
+    uri: ""
+  metrics:
+    containerPorts:
+      metrics: 9187
+    containerSecurityContext:
+      enabled: true
+      runAsNonRoot: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customMetrics: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: false
+    extraEnvVars: []
+    image:
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/postgres-exporter
+      tag: 0.11.1-debian-11-r46
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    prometheusRule:
+      enabled: false
+      labels: {}
+      namespace: ""
+      rules: []
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    resources:
+      limits: {}
+      requests: {}
+    service:
+      annotations:
+        prometheus.io/port: '{{ .Values.metrics.service.ports.metrics }}'
+        prometheus.io/scrape: "true"
+      clusterIP: ""
+      ports:
+        metrics: 9187
+      sessionAffinity: None
+    serviceMonitor:
+      enabled: false
+      honorLabels: false
+      interval: ""
+      jobLabel: ""
+      labels: {}
+      metricRelabelings: []
+      namespace: ""
+      relabelings: []
+      scrapeTimeout: ""
+      selector: {}
+    startupProbe:
+      enabled: false
+      failureThreshold: 15
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+  nameOverride: ""
+  networkPolicy:
+    egressRules:
+      customRules: {}
+      denyConnectionsToExternal: false
+    enabled: false
+    ingressRules:
+      primaryAccessOnlyFrom:
+        customRules: {}
+        enabled: false
+        namespaceSelector: {}
+        podSelector: {}
+      readReplicasAccessOnlyFrom:
+        customRules: {}
+        enabled: false
+        namespaceSelector: {}
+        podSelector: {}
+    metrics:
+      enabled: false
+      namespaceSelector: {}
+      podSelector: {}
+  postgresqlDataDir: /bitnami/postgresql/data
+  postgresqlSharedPreloadLibraries: pgaudit
+  primary:
+    affinity: {}
+    annotations: {}
+    args: []
+    command: []
+    configuration: ""
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    existingConfigmap: ""
+    existingExtendedConfigmap: ""
+    extendedConfiguration: ""
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraPodSpec: {}
+    extraVolumeMounts: []
+    extraVolumes: []
+    hostAliases: []
+    hostIPC: false
+    hostNetwork: false
+    initContainers: []
+    initdb:
+      args: ""
+      password: ""
+      postgresqlWalDir: ""
+      scripts: {}
+      scriptsConfigMap: ""
+      scriptsSecret: ""
+      user: ""
+    labels: {}
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    name: primary
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      dataSource: {}
+      enabled: true
+      existingClaim: ""
+      labels: {}
+      mountPath: /bitnami/postgresql
+      selector: {}
+      size: 8Gi
+      storageClass: ""
+      subPath: ""
+    pgHbaConfiguration: ""
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    resources:
+      limits: {}
+      requests:
+        cpu: 250m
+        memory: 256Mi
+    schedulerName: ""
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      headless:
+        annotations: {}
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        postgresql: ""
+      ports:
+        postgresql: 5432
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    sidecars: []
+    standby:
+      enabled: false
+      primaryHost: ""
+      primaryPort: ""
+    startupProbe:
+      enabled: false
+      failureThreshold: 15
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    terminationGracePeriodSeconds: ""
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      rollingUpdate: {}
+      type: RollingUpdate
+  psp:
+    create: false
+  rbac:
+    create: false
+    rules: []
+  readReplicas:
+    affinity: {}
+    annotations: {}
+    args: []
+    command: []
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    extendedConfiguration: ""
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraPodSpec: {}
+    extraVolumeMounts: []
+    extraVolumes: []
+    hostAliases: []
+    hostIPC: false
+    hostNetwork: false
+    initContainers: []
+    labels: {}
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    name: read
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      dataSource: {}
+      enabled: true
+      existingClaim: ""
+      labels: {}
+      mountPath: /bitnami/postgresql
+      selector: {}
+      size: 8Gi
+      storageClass: ""
+      subPath: ""
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 6
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    replicaCount: 1
+    resources:
+      limits: {}
+      requests:
+        cpu: 250m
+        memory: 256Mi
+    schedulerName: ""
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      headless:
+        annotations: {}
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        postgresql: ""
+      ports:
+        postgresql: 5432
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 15
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    terminationGracePeriodSeconds: ""
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      rollingUpdate: {}
+      type: RollingUpdate
+  replication:
+    applicationName: my_application
+    numSynchronousReplicas: 0
+    synchronousCommit: "off"
+  serviceAccount:
+    annotations: {}
+    automountServiceAccountToken: true
+    create: false
+    name: ""
+  shmVolume:
+    enabled: true
+    sizeLimit: ""
+  tls:
+    autoGenerated: false
+    certCAFilename: ""
+    certFilename: ""
+    certKeyFilename: ""
+    certificatesSecret: ""
+    crlFilename: ""
+    enabled: false
+    preferServerCiphers: true
+  volumePermissions:
+    containerSecurityContext:
+      runAsUser: 0
+    enabled: false
+    image:
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/bitnami-shell
+      tag: 11-debian-11-r69
+    resources:
+      limits: {}
+      requests: {}
+rbac:
+  create: false
+  rules: []
+redis:
+  architecture: standalone
+  auth:
+    enabled: true
+    existingSecret: ""
+    existingSecretPasswordKey: ""
+    password: ""
+    sentinel: true
+    usePasswordFiles: false
+  clusterDomain: cluster.local
+  common:
+    exampleValue: common-chart
+    global:
+      imagePullSecrets: []
+      imageRegistry: ""
+      redis:
+        password: ""
+      storageClass: ""
+  commonAnnotations: {}
+  commonConfiguration: |-
+    # Enable AOF https://redis.io/topics/persistence#append-only-file
+    appendonly yes
+    # Disable RDB persistence, AOF persistence already enabled.
+    save ""
+  commonLabels: {}
+  diagnosticMode:
+    args:
+    - infinity
+    command:
+    - sleep
+    enabled: false
+  enabled: true
+  existingConfigmap: ""
+  extraDeploy: []
+  fullnameOverride: ""
+  global:
+    imagePullSecrets: []
+    imageRegistry: ""
+    redis:
+      password: ""
+    storageClass: ""
+  image:
+    debug: false
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/redis
+    tag: 7.0.8-debian-11-r0
+  kubeVersion: ""
+  master:
+    affinity: {}
+    args: []
+    command: []
+    configuration: ""
+    containerPorts:
+      redis: 6379
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    count: 1
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    disableCommands:
+    - FLUSHDB
+    - FLUSHALL
+    dnsConfig: {}
+    dnsPolicy: ""
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraFlags: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    hostAliases: []
+    initContainers: []
+    kind: StatefulSet
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 5
+    minReadySeconds: 0
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      dataSource: {}
+      enabled: true
+      existingClaim: ""
+      medium: ""
+      path: /data
+      selector: {}
+      size: 8Gi
+      sizeLimit: ""
+      storageClass: ""
+      subPath: ""
+      subPathExpr: ""
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    preExecCmds: []
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalIPs: []
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      internalTrafficPolicy: Cluster
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        redis: ""
+      ports:
+        redis: 6379
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    shareProcessNamespace: false
+    sidecars: []
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 5
+    terminationGracePeriodSeconds: 30
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  metrics:
+    command: []
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    enabled: false
+    extraArgs: {}
+    extraEnvVars: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    image:
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/redis-exporter
+      tag: 1.45.0-debian-11-r26
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    podAnnotations:
+      prometheus.io/port: "9121"
+      prometheus.io/scrape: "true"
+    podLabels: {}
+    prometheusRule:
+      additionalLabels: {}
+      enabled: false
+      namespace: ""
+      rules: []
+    readinessProbe:
+      enabled: true
+      failureThreshold: 3
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    redisTargetHost: localhost
+    resources:
+      limits: {}
+      requests: {}
+    service:
+      annotations: {}
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      port: 9121
+      type: ClusterIP
+    serviceMonitor:
+      additionalLabels: {}
+      enabled: false
+      honorLabels: false
+      interval: 30s
+      metricRelabelings: []
+      namespace: ""
+      podTargetLabels: []
+      relabellings: []
+      scrapeTimeout: ""
+    startupProbe:
+      enabled: false
+      failureThreshold: 5
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+  nameOverride: ""
+  networkPolicy:
+    allowExternal: true
+    enabled: false
+    extraEgress: []
+    extraIngress: []
+    ingressNSMatchLabels: {}
+    ingressNSPodMatchLabels: {}
+  pdb:
+    create: false
+    maxUnavailable: ""
+    minAvailable: 1
+  podSecurityPolicy:
+    create: false
+    enabled: false
+  rbac:
+    create: false
+    rules: []
+  replica:
+    affinity: {}
+    args: []
+    autoscaling:
+      enabled: false
+      maxReplicas: 11
+      minReplicas: 1
+      targetCPU: ""
+      targetMemory: ""
+    command: []
+    configuration: ""
+    containerPorts:
+      redis: 6379
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    disableCommands:
+    - FLUSHDB
+    - FLUSHALL
+    dnsConfig: {}
+    dnsPolicy: ""
+    externalMaster:
+      enabled: false
+      host: ""
+      port: 6379
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraFlags: []
+    extraVolumeMounts: []
+    extraVolumes: []
+    hostAliases: []
+    initContainers: []
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 5
+    minReadySeconds: 0
+    nodeAffinityPreset:
+      key: ""
+      type: ""
+      values: []
+    nodeSelector: {}
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      dataSource: {}
+      enabled: true
+      existingClaim: ""
+      medium: ""
+      path: /data
+      selector: {}
+      size: 8Gi
+      sizeLimit: ""
+      storageClass: ""
+      subPath: ""
+      subPathExpr: ""
+    podAffinityPreset: ""
+    podAnnotations: {}
+    podAntiAffinityPreset: soft
+    podLabels: {}
+    podManagementPolicy: ""
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    preExecCmds: []
+    priorityClassName: ""
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    replicaCount: 3
+    resources:
+      limits: {}
+      requests: {}
+    schedulerName: ""
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      internalTrafficPolicy: Cluster
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        redis: ""
+      ports:
+        redis: 6379
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    serviceAccount:
+      annotations: {}
+      automountServiceAccountToken: true
+      create: false
+      name: ""
+    shareProcessNamespace: false
+    sidecars: []
+    startupProbe:
+      enabled: true
+      failureThreshold: 22
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    terminationGracePeriodSeconds: 30
+    tolerations: []
+    topologySpreadConstraints: []
+    updateStrategy:
+      type: RollingUpdate
+  secretAnnotations: {}
+  sentinel:
+    args: []
+    automateClusterRecovery: false
+    command: []
+    configuration: ""
+    containerPorts:
+      sentinel: 26379
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+    customLivenessProbe: {}
+    customReadinessProbe: {}
+    customStartupProbe: {}
+    downAfterMilliseconds: 60000
+    enabled: false
+    externalMaster:
+      enabled: false
+      host: ""
+      port: 6379
+    extraEnvVars: []
+    extraEnvVarsCM: ""
+    extraEnvVarsSecret: ""
+    extraVolumeMounts: []
+    extraVolumes: []
+    failoverTimeout: 180000
+    getMasterTimeout: 220
+    image:
+      debug: false
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/redis-sentinel
+      tag: 7.0.7-debian-11-r10
+    lifecycleHooks: {}
+    livenessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 5
+    masterSet: mymaster
+    parallelSyncs: 1
+    persistence:
+      accessModes:
+      - ReadWriteOnce
+      annotations: {}
+      dataSource: {}
+      enabled: false
+      medium: ""
+      selector: {}
+      size: 100Mi
+      storageClass: ""
+    preExecCmds: []
+    quorum: 2
+    readinessProbe:
+      enabled: true
+      failureThreshold: 5
+      initialDelaySeconds: 20
+      periodSeconds: 5
+      successThreshold: 1
+      timeoutSeconds: 1
+    redisShutdownWaitFailover: true
+    resources:
+      limits: {}
+      requests: {}
+    service:
+      annotations: {}
+      clusterIP: ""
+      externalTrafficPolicy: Cluster
+      extraPorts: []
+      loadBalancerIP: ""
+      loadBalancerSourceRanges: []
+      nodePorts:
+        redis: ""
+        sentinel: ""
+      ports:
+        redis: 6379
+        sentinel: 26379
+      sessionAffinity: None
+      sessionAffinityConfig: {}
+      type: ClusterIP
+    startupProbe:
+      enabled: true
+      failureThreshold: 22
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 5
+    terminationGracePeriodSeconds: 30
+  serviceAccount:
+    annotations: {}
+    automountServiceAccountToken: true
+    create: true
+    name: ""
+  sysctl:
+    command: []
+    enabled: false
+    image:
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/bitnami-shell
+      tag: 11-debian-11-r72
+    mountHostSys: false
+    resources:
+      limits: {}
+      requests: {}
+  tls:
+    authClients: true
+    autoGenerated: false
+    certCAFilename: ""
+    certFilename: ""
+    certKeyFilename: ""
+    certificatesSecret: ""
+    dhParamsFilename: ""
+    enabled: false
+    existingSecret: ""
+  useExternalDNS:
+    additionalAnnotations: {}
+    annotationKey: external-dns.alpha.kubernetes.io/
+    enabled: false
+    suffix: ""
+  volumePermissions:
+    containerSecurityContext:
+      runAsUser: 0
+    enabled: false
+    image:
+      digest: ""
+      pullPolicy: IfNotPresent
+      pullSecrets: []
+      registry: docker.io
+      repository: bitnami/bitnami-shell
+      tag: 11-debian-11-r72
+    resources:
+      limits: {}
+      requests: {}
+scheduler:
+  affinity: {}
+  args: []
+  command: []
+  containerSecurityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 1001
+  customLivenessProbe: {}
+  customReadinessProbe: {}
+  customStartupProbe: {}
+  extraEnvVars: []
+  extraEnvVarsCM: ""
+  extraEnvVarsSecret: ""
+  extraEnvVarsSecrets: []
+  extraVolumeMounts: []
+  extraVolumes: []
+  hostAliases: []
+  image:
+    debug: false
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/airflow-scheduler
+    tag: 2.5.1-debian-11-r0
+  initContainers: []
+  lifecycleHooks: {}
+  nodeAffinityPreset:
+    key: ""
+    type: ""
+    values: []
+  nodeSelector: {}
+  pdb:
+    create: false
+    maxUnavailable: ""
+    minAvailable: 1
+  podAffinityPreset: ""
+  podAnnotations: {}
+  podAntiAffinityPreset: soft
+  podLabels: {}
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  priorityClassName: ""
+  replicaCount: 1
+  resources:
+    limits: {}
+    requests: {}
+  schedulerName: ""
+  sidecars: []
+  terminationGracePeriodSeconds: ""
+  tolerations: []
+  topologySpreadConstraints: []
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+service:
+  annotations: {}
+  clusterIP: ""
+  externalTrafficPolicy: Cluster
+  extraPorts: []
+  loadBalancerIP: ""
+  loadBalancerSourceRanges: []
+  nodePorts:
+    http: ""
+  ports:
+    http: 8080
+  sessionAffinity: None
+  sessionAffinityConfig: {}
+  type: ClusterIP
+serviceAccount:
+  annotations: {}
+  automountServiceAccountToken: true
+  create: false
+  name: ""
+sidecars: []
+web:
+  affinity: {}
+  args: []
+  baseUrl: ""
+  command: []
+  containerPorts:
+    http: 8080
+  containerSecurityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 1001
+  customLivenessProbe: {}
+  customReadinessProbe: {}
+  customStartupProbe: {}
+  existingConfigmap: ""
+  extraEnvVars: []
+  extraEnvVarsCM: ""
+  extraEnvVarsSecret: ""
+  extraEnvVarsSecrets: []
+  extraVolumeMounts: []
+  extraVolumes: []
+  hostAliases: []
+  image:
+    debug: false
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/airflow
+    tag: 2.5.1-debian-11-r0
+  initContainers: []
+  lifecycleHooks: {}
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 180
+    periodSeconds: 20
+    successThreshold: 1
+    timeoutSeconds: 5
+  nodeAffinityPreset:
+    key: ""
+    type: ""
+    values: []
+  nodeSelector: {}
+  pdb:
+    create: false
+    maxUnavailable: ""
+    minAvailable: 1
+  podAffinityPreset: ""
+  podAnnotations: {}
+  podAntiAffinityPreset: soft
+  podLabels: {}
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  priorityClassName: ""
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replicaCount: 1
+  resources:
+    limits: {}
+    requests: {}
+  schedulerName: ""
+  sidecars: []
+  startupProbe:
+    enabled: false
+    failureThreshold: 15
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  terminationGracePeriodSeconds: ""
+  tolerations: []
+  topologySpreadConstraints: []
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+worker:
+  affinity: {}
+  args: []
+  autoscaling:
+    enabled: false
+    maxReplicas: 3
+    minReplicas: 1
+    targetCPU: 80
+    targetMemory: 80
+  command: []
+  containerPorts:
+    http: 8793
+  containerSecurityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 1001
+  customLivenessProbe: {}
+  customReadinessProbe: {}
+  customStartupProbe: {}
+  extraEnvVars: []
+  extraEnvVarsCM: ""
+  extraEnvVarsSecret: ""
+  extraEnvVarsSecrets: []
+  extraVolumeClaimTemplates: []
+  extraVolumeMounts: []
+  extraVolumes: []
+  hostAliases: []
+  image:
+    debug: false
+    digest: ""
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+    registry: docker.io
+    repository: bitnami/airflow-worker
+    tag: 2.5.1-debian-11-r0
+  initContainers: []
+  lifecycleHooks: {}
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 180
+    periodSeconds: 20
+    successThreshold: 1
+    timeoutSeconds: 5
+  nodeAffinityPreset:
+    key: ""
+    type: ""
+    values: []
+  nodeSelector: {}
+  pdb:
+    create: false
+    maxUnavailable: ""
+    minAvailable: 1
+  podAffinityPreset: ""
+  podAnnotations: {}
+  podAntiAffinityPreset: soft
+  podLabels: {}
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  podTemplate: {}
+  priorityClassName: ""
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  replicaCount: 1
+  resources:
+    limits: {}
+    requests: {}
+  schedulerName: ""
+  sidecars: []
+  startupProbe:
+    enabled: false
+    failureThreshold: 15
+    initialDelaySeconds: 60
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  terminationGracePeriodSeconds: ""
+  tolerations: []
+  topologySpreadConstraints: []
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+
+HOOKS:
+MANIFEST:
+---
+# Source: airflow/charts/redis/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+automountServiceAccountToken: true
+metadata:
+  name: airflow-helm-redis
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+---
+# Source: airflow/charts/postgresql/templates/secrets.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: airflow-helm-postgresql
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: postgresql
+    helm.sh/chart: postgresql-12.1.9
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  password: "WGhkUFhLVE91QQ=="
+  # We don't auto-generate LDAP password when it's not provided as we do for other passwords
+---
+# Source: airflow/charts/redis/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: airflow-helm-redis
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  redis-password: "UWlKaVA4Z3V4dg=="
+---
+# Source: airflow/templates/config/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: airflow-helm
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+type: Opaque
+data:
+  airflow-password: "cm1ka0YybXBqQg=="
+  # Airflow keys must be base64-encoded, hence we need to pipe to 'b64enc' twice
+  # The auto-generation mechanism available at "common.secrets.passwords.manage" isn't compatible with encoding twice
+  # Therefore, we can only use this function if the secret already exists
+  airflow-fernet-key: "YjNGc1dIcDJNRFkzWWtOblJrVk9ja3hzVkRJd00wMUNjV3RqVmpOVGRqUT0="
+  airflow-secret-key: "UWxWaFVreEZlV2hVTURKSmRrUnhVemxMUlc4ek9USm9OSHBqV1ZORlRHbz0="
+---
+# Source: airflow/charts/redis/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-helm-redis-configuration
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+data:
+  redis.conf: |-
+    # User-supplied common configuration:
+    # Enable AOF https://redis.io/topics/persistence#append-only-file
+    appendonly yes
+    # Disable RDB persistence, AOF persistence already enabled.
+    save ""
+    # End of common configuration
+  master.conf: |-
+    dir /data
+    # User-supplied master configuration:
+    rename-command FLUSHDB ""
+    rename-command FLUSHALL ""
+    # End of master configuration
+  replica.conf: |-
+    dir /data
+    # User-supplied replica configuration:
+    rename-command FLUSHDB ""
+    rename-command FLUSHALL ""
+    # End of replica configuration
+---
+# Source: airflow/charts/redis/templates/health-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-helm-redis-health
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+data:
+  ping_readiness_local.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h localhost \
+        -p $REDIS_PORT \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_liveness_local.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    [[ -n "$REDIS_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_PASSWORD"
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h localhost \
+        -p $REDIS_PORT \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    responseFirstWord=$(echo $response | head -n1 | awk '{print $1;}')
+    if [ "$response" != "PONG" ] && [ "$responseFirstWord" != "LOADING" ] && [ "$responseFirstWord" != "MASTERDOWN" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_readiness_master.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_MASTER_PASSWORD_FILE ]] && export REDIS_MASTER_PASSWORD="$(< "${REDIS_MASTER_PASSWORD_FILE}")"
+    [[ -n "$REDIS_MASTER_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_MASTER_PASSWORD"
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h $REDIS_MASTER_HOST \
+        -p $REDIS_MASTER_PORT_NUMBER \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    if [ "$response" != "PONG" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_liveness_master.sh: |-
+    #!/bin/bash
+
+    [[ -f $REDIS_MASTER_PASSWORD_FILE ]] && export REDIS_MASTER_PASSWORD="$(< "${REDIS_MASTER_PASSWORD_FILE}")"
+    [[ -n "$REDIS_MASTER_PASSWORD" ]] && export REDISCLI_AUTH="$REDIS_MASTER_PASSWORD"
+    response=$(
+      timeout -s 3 $1 \
+      redis-cli \
+        -h $REDIS_MASTER_HOST \
+        -p $REDIS_MASTER_PORT_NUMBER \
+        ping
+    )
+    if [ "$?" -eq "124" ]; then
+      echo "Timed out"
+      exit 1
+    fi
+    responseFirstWord=$(echo $response | head -n1 | awk '{print $1;}')
+    if [ "$response" != "PONG" ] && [ "$responseFirstWord" != "LOADING" ]; then
+      echo "$response"
+      exit 1
+    fi
+  ping_readiness_local_and_master.sh: |-
+    script_dir="$(dirname "$0")"
+    exit_status=0
+    "$script_dir/ping_readiness_local.sh" $1 || exit_status=$?
+    "$script_dir/ping_readiness_master.sh" $1 || exit_status=$?
+    exit $exit_status
+  ping_liveness_local_and_master.sh: |-
+    script_dir="$(dirname "$0")"
+    exit_status=0
+    "$script_dir/ping_liveness_local.sh" $1 || exit_status=$?
+    "$script_dir/ping_liveness_master.sh" $1 || exit_status=$?
+    exit $exit_status
+---
+# Source: airflow/charts/redis/templates/scripts-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airflow-helm-redis-scripts
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+data:
+  start-master.sh: |
+    #!/bin/bash
+
+    [[ -f $REDIS_PASSWORD_FILE ]] && export REDIS_PASSWORD="$(< "${REDIS_PASSWORD_FILE}")"
+    if [[ -f /opt/bitnami/redis/mounted-etc/master.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/master.conf /opt/bitnami/redis/etc/master.conf
+    fi
+    if [[ -f /opt/bitnami/redis/mounted-etc/redis.conf ]];then
+        cp /opt/bitnami/redis/mounted-etc/redis.conf /opt/bitnami/redis/etc/redis.conf
+    fi
+    ARGS=("--port" "${REDIS_PORT}")
+    ARGS+=("--requirepass" "${REDIS_PASSWORD}")
+    ARGS+=("--masterauth" "${REDIS_PASSWORD}")
+    ARGS+=("--include" "/opt/bitnami/redis/etc/redis.conf")
+    ARGS+=("--include" "/opt/bitnami/redis/etc/master.conf")
+    exec redis-server "${ARGS[@]}"
+---
+# Source: airflow/charts/postgresql/templates/primary/svc-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm-postgresql-hl
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: postgresql
+    helm.sh/chart: postgresql-12.1.9
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: primary
+    # Use this annotation in addition to the actual publishNotReadyAddresses
+    # field below because the annotation will stop being respected soon but the
+    # field is broken in some versions of Kubernetes:
+    # https://github.com/kubernetes/kubernetes/issues/58662
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+spec:
+  type: ClusterIP
+  clusterIP: None
+  # We want all pods in the StatefulSet to have their addresses published for
+  # the sake of the other Postgresql pods even before they're ready, since they
+  # have to be able to talk to each other in order to become ready.
+  publishNotReadyAddresses: true
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+  selector:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/component: primary
+---
+# Source: airflow/charts/postgresql/templates/primary/svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm-postgresql
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: postgresql
+    helm.sh/chart: postgresql-12.1.9
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: primary
+  annotations:
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - name: tcp-postgresql
+      port: 5432
+      targetPort: tcp-postgresql
+      nodePort: null
+  selector:
+    app.kubernetes.io/name: postgresql
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/component: primary
+---
+# Source: airflow/charts/redis/templates/headless-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm-redis-headless
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: tcp-redis
+      port: 6379
+      targetPort: redis
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: airflow-helm
+---
+# Source: airflow/charts/redis/templates/master/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm-redis-master
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: master
+spec:
+  type: ClusterIP
+  internalTrafficPolicy: Cluster
+  sessionAffinity: None
+  ports:
+    - name: tcp-redis
+      port: 6379
+      targetPort: redis
+      nodePort: null
+  selector:
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/component: master
+---
+# Source: airflow/templates/web/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  sessionAffinity: None
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: http
+      nodePort: null
+  selector:
+    app.kubernetes.io/name: airflow
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/component: web
+---
+# Source: airflow/templates/worker/service-headless.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: airflow-helm-worker-hl
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - name: worker
+      port: 8793
+      targetPort: worker
+  selector:
+    app.kubernetes.io/name: airflow
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/component: worker
+---
+# Source: airflow/templates/scheduler/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-helm-scheduler
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: scheduler
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: airflow
+      app.kubernetes.io/instance: airflow-helm
+      app.kubernetes.io/component: scheduler
+  replicas: 1
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: airflow
+        helm.sh/chart: airflow-14.0.8
+        app.kubernetes.io/instance: airflow-helm
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: scheduler
+      annotations:
+        checksum/configmap: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+    spec:
+      
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: airflow
+                    app.kubernetes.io/instance: airflow-helm
+                    app.kubernetes.io/component: scheduler
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      serviceAccountName: default
+      securityContext:
+        fsGroup: 1001
+      initContainers:
+        
+      containers:
+        
+        - name: airflow-scheduler
+          image: "docker.io/bitnami/airflow-scheduler:2.5.1-debian-11-r0"
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: AIRFLOW_FERNET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-fernet-key
+            - name: AIRFLOW_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-secret-key
+            - name: AIRFLOW_LOAD_EXAMPLES
+              value: "no"
+            - name: AIRFLOW_DATABASE_NAME
+              value: "bitnami_airflow"
+            - name: AIRFLOW_DATABASE_USERNAME
+              value: "bn_airflow"
+            - name: AIRFLOW_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-postgresql
+                  key: password
+            - name: AIRFLOW_DATABASE_HOST
+              value: "airflow-helm-postgresql"
+            - name: AIRFLOW_DATABASE_PORT_NUMBER
+              value: "5432"
+            
+            - name: REDIS_HOST
+              value: "airflow-helm-redis-master"
+            - name: REDIS_PORT_NUMBER
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-redis
+                  key: redis-password
+            
+            - name: AIRFLOW_EXECUTOR
+              value: CeleryExecutor
+            - name: AIRFLOW_WEBSERVER_HOST
+              value: airflow-helm
+            - name: AIRFLOW_WEBSERVER_PORT_NUMBER
+              value: "8080"
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            
+      volumes:
+---
+# Source: airflow/templates/web/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airflow-helm-web
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: web
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: airflow
+      app.kubernetes.io/instance: airflow-helm
+      app.kubernetes.io/component: web
+  replicas: 1
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: airflow
+        helm.sh/chart: airflow-14.0.8
+        app.kubernetes.io/instance: airflow-helm
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: web
+      annotations:
+        checksum/configmap: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+    spec:
+      
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: airflow
+                    app.kubernetes.io/instance: airflow-helm
+                    app.kubernetes.io/component: web
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      serviceAccountName: default
+      securityContext:
+        fsGroup: 1001
+      initContainers:
+        
+      containers:
+        
+        - name: airflow-web
+          image: docker.io/bitnami/airflow:2.5.1-debian-11-r0
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: AIRFLOW_FERNET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-fernet-key
+            - name: AIRFLOW_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-secret-key
+            - name: AIRFLOW_LOAD_EXAMPLES
+              value: "no"
+            - name: AIRFLOW_DATABASE_NAME
+              value: "bitnami_airflow"
+            - name: AIRFLOW_DATABASE_USERNAME
+              value: "bn_airflow"
+            - name: AIRFLOW_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-postgresql
+                  key: password
+            - name: AIRFLOW_DATABASE_HOST
+              value: "airflow-helm-postgresql"
+            - name: AIRFLOW_DATABASE_PORT_NUMBER
+              value: "5432"
+            
+            - name: REDIS_HOST
+              value: "airflow-helm-redis-master"
+            - name: REDIS_PORT_NUMBER
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-redis
+                  key: redis-password
+            
+            - name: AIRFLOW_EXECUTOR
+              value: CeleryExecutor
+            - name: AIRFLOW_WEBSERVER_HOST
+              value: '0.0.0.0'
+            - name: AIRFLOW_WEBSERVER_PORT_NUMBER
+              value: "8080"
+            - name: AIRFLOW_USERNAME
+              value: user
+            - name: AIRFLOW_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-password
+            - name: AIRFLOW_BASE_URL
+              value: "http://127.0.0.1:8080"
+            - name: AIRFLOW_LDAP_ENABLE
+              value: "no"
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 180
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+            tcpSocket:
+              port: http
+          readinessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            tcpSocket:
+              port: http
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            
+      volumes:
+---
+# Source: airflow/charts/postgresql/templates/primary/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: airflow-helm-postgresql
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: postgresql
+    helm.sh/chart: postgresql-12.1.9
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: primary
+  annotations:
+spec:
+  replicas: 1
+  serviceName: airflow-helm-postgresql-hl
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgresql
+      app.kubernetes.io/instance: airflow-helm
+      app.kubernetes.io/component: primary
+  template:
+    metadata:
+      name: airflow-helm-postgresql
+      labels:
+        app.kubernetes.io/name: postgresql
+        helm.sh/chart: postgresql-12.1.9
+        app.kubernetes.io/instance: airflow-helm
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: primary
+      annotations:
+    spec:
+      serviceAccountName: default
+      
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: postgresql
+                    app.kubernetes.io/instance: airflow-helm
+                    app.kubernetes.io/component: primary
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      securityContext:
+        fsGroup: 1001
+      hostNetwork: false
+      hostIPC: false
+      initContainers:
+      containers:
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:15.1.0-debian-11-r20
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsUser: 1001
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: POSTGRESQL_PORT_NUMBER
+              value: "5432"
+            - name: POSTGRESQL_VOLUME_DIR
+              value: "/bitnami/postgresql"
+            - name: PGDATA
+              value: "/bitnami/postgresql/data"
+            # Authentication
+            - name: POSTGRES_USER
+              value: "bn_airflow"
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-postgresql
+                  key: password
+            - name: POSTGRES_DB
+              value: "bitnami_airflow"
+            # Replication
+            # Initdb
+            # Standby
+            # LDAP
+            - name: POSTGRESQL_ENABLE_LDAP
+              value: "no"
+            # TLS
+            - name: POSTGRESQL_ENABLE_TLS
+              value: "no"
+            # Audit
+            - name: POSTGRESQL_LOG_HOSTNAME
+              value: "false"
+            - name: POSTGRESQL_LOG_CONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_LOG_DISCONNECTIONS
+              value: "false"
+            - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+              value: "off"
+            # Others
+            - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+              value: "error"
+            - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+              value: "pgaudit"
+          ports:
+            - name: tcp-postgresql
+              containerPort: 5432
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - exec pg_isready -U "bn_airflow" -d "dbname=bitnami_airflow" -h 127.0.0.1 -p 5432
+          readinessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - -e
+                
+                - |
+                  exec pg_isready -U "bn_airflow" -d "dbname=bitnami_airflow" -h 127.0.0.1 -p 5432
+                  [ -f /opt/bitnami/postgresql/tmp/.initialized ] || [ -f /bitnami/postgresql/.initialized ]
+          resources:
+            limits: {}
+            requests:
+              cpu: 250m
+              memory: 256Mi
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+            - name: data
+              mountPath: /bitnami/postgresql
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: airflow/charts/redis/templates/master/application.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: airflow-helm-redis-master
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: redis
+    helm.sh/chart: redis-17.5.1
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: master
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/instance: airflow-helm
+      app.kubernetes.io/component: master
+  serviceName: airflow-helm-redis-headless
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis
+        helm.sh/chart: redis-17.5.1
+        app.kubernetes.io/instance: airflow-helm
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: master
+      annotations:
+        checksum/configmap: b52ee193347884a54d148216d7ee2908ffb7af6726fb25ecd02e9cb5ba644c7a
+        checksum/health: 1968bd4ce2688bf3bfbc047083f31e928369d5d74f70271d075ec55ca7c97ee5
+        checksum/scripts: fa1eab14b146fca2c65c628aa62ec3b83eb2d5ee82633e435b39a14d534aaee3
+        checksum/secret: 383c157cd1bf50370337531b5056cd74c6830853e0a4b2f8408c9e2db0db49aa
+    spec:
+      
+      securityContext:
+        fsGroup: 1001
+      serviceAccountName: airflow-helm-redis
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: redis
+                    app.kubernetes.io/instance: airflow-helm
+                    app.kubernetes.io/component: master
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: redis
+          image: docker.io/bitnami/redis:7.0.8-debian-11-r0
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsUser: 1001
+          command:
+            - /bin/bash
+          args:
+            - -c
+            - /opt/bitnami/scripts/start-scripts/start-master.sh
+          env:
+            - name: BITNAMI_DEBUG
+              value: "false"
+            - name: REDIS_REPLICATION_MODE
+              value: master
+            - name: ALLOW_EMPTY_PASSWORD
+              value: "no"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-redis
+                  key: redis-password
+            - name: REDIS_TLS_ENABLED
+              value: "no"
+            - name: REDIS_PORT
+              value: "6379"
+          ports:
+            - name: redis
+              containerPort: 6379
+          livenessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            # One second longer than command timeout should prevent generation of zombie processes.
+            timeoutSeconds: 6
+            successThreshold: 1
+            failureThreshold: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - /health/ping_liveness_local.sh 5
+          readinessProbe:
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            timeoutSeconds: 2
+            successThreshold: 1
+            failureThreshold: 5
+            exec:
+              command:
+                - sh
+                - -c
+                - /health/ping_readiness_local.sh 1
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            - name: start-scripts
+              mountPath: /opt/bitnami/scripts/start-scripts
+            - name: health
+              mountPath: /health
+            - name: redis-data
+              mountPath: /data
+            - name: config
+              mountPath: /opt/bitnami/redis/mounted-etc
+            - name: redis-tmp-conf
+              mountPath: /opt/bitnami/redis/etc/
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: start-scripts
+          configMap:
+            name: airflow-helm-redis-scripts
+            defaultMode: 0755
+        - name: health
+          configMap:
+            name: airflow-helm-redis-health
+            defaultMode: 0755
+        - name: config
+          configMap:
+            name: airflow-helm-redis-configuration
+        - name: redis-tmp-conf
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-data
+        labels:
+          app.kubernetes.io/name: redis
+          app.kubernetes.io/instance: airflow-helm
+          app.kubernetes.io/component: master
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: "8Gi"
+---
+# Source: airflow/templates/worker/statefulset.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: airflow-helm-worker
+  namespace: "ad8c-d"
+  labels:
+    app.kubernetes.io/name: airflow
+    helm.sh/chart: airflow-14.0.8
+    app.kubernetes.io/instance: airflow-helm
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: airflow
+      app.kubernetes.io/instance: airflow-helm
+      app.kubernetes.io/component: worker
+  serviceName: airflow-helm-worker-hl
+  updateStrategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        checksum/configmap: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+      labels:
+        app.kubernetes.io/name: airflow
+        helm.sh/chart: airflow-14.0.8
+        app.kubernetes.io/instance: airflow-helm
+        app.kubernetes.io/managed-by: Helm
+        app.kubernetes.io/component: worker
+    spec:
+      
+      affinity:
+        podAffinity:
+          
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: airflow
+                    app.kubernetes.io/instance: airflow-helm
+                    app.kubernetes.io/component: worker
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+          
+      serviceAccountName: default
+      securityContext:
+        fsGroup: 1001
+      initContainers:
+        
+      containers:
+        
+        - name: airflow-worker
+          image: docker.io/bitnami/airflow-worker:2.5.1-debian-11-r0
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: AIRFLOW_FERNET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-fernet-key
+            - name: AIRFLOW_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm
+                  key: airflow-secret-key
+            - name: AIRFLOW_LOAD_EXAMPLES
+              value: "no"
+            - name: AIRFLOW_DATABASE_NAME
+              value: "bitnami_airflow"
+            - name: AIRFLOW_DATABASE_USERNAME
+              value: "bn_airflow"
+            - name: AIRFLOW_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-postgresql
+                  key: password
+            - name: AIRFLOW_DATABASE_HOST
+              value: "airflow-helm-postgresql"
+            - name: AIRFLOW_DATABASE_PORT_NUMBER
+              value: "5432"
+            
+            - name: REDIS_HOST
+              value: "airflow-helm-redis-master"
+            - name: REDIS_PORT_NUMBER
+              value: "6379"
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: airflow-helm-redis
+                  key: redis-password
+            - name: AIRFLOW_EXECUTOR
+              value: CeleryExecutor
+            - name: AIRFLOW_WEBSERVER_HOST
+              value: airflow-helm
+            - name: AIRFLOW_WEBSERVER_PORT_NUMBER
+              value: "8080"
+          ports:
+            - name: worker
+              containerPort: 8793
+          livenessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 180
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+            tcpSocket:
+              port: worker
+          readinessProbe:
+            failureThreshold: 6
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+            tcpSocket:
+              port: worker
+          resources:
+            limits: {}
+            requests: {}
+          volumeMounts:
+            
+      volumes:
+
+NOTES:
+CHART NAME: airflow
+CHART VERSION: 14.0.8
+APP VERSION: 2.5.1
+
+** Please be patient while the chart is being deployed **
+
+Airflow can be accessed via port 8080 on the following DNS name from within your cluster:
+
+    airflow-helm.ad8c-d.svc.cluster.local
+
+To connect to Airflow from outside the cluster, perform the following steps:
+
+1.  Create a port-forward to the service:
+
+    kubectl port-forward --namespace ad8c-d svc/airflow-helm 8080:8080 &
+    echo "Airflow URL: http://127.0.0.1:8080"
+
+2. Open a browser and access Airflow using the obtained URL.
+
+3. Get your Airflow login credentials by running:
+
+    export AIRFLOW_PASSWORD=$(kubectl get secret --namespace "ad8c-d" airflow-helm -o jsonpath="{.data.airflow-password}" | base64 -d)
+    echo User:     user
+    echo Password: $AIRFLOW_PASSWORD
