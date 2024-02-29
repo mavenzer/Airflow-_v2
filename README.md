@@ -18,3 +18,16 @@ helm install your-release-name bitnami/airflow \
   --set airflow.web.image.tag=your-airflow-webserver-tag
 
 
+#### Deploying Airflow with Bitnami Helm charts 
+```
+helm install my-airflow bitnami/airflow \
+  --set web.securityContext.runAsUser=1001 \
+  --set web.securityContext.runAsGroup=1001 \
+  --set web.securityContext.fsGroup=1001 \
+  --set scheduler.securityContext.runAsUser=1001 \
+  --set scheduler.securityContext.runAsGroup=1001 \
+  --set scheduler.securityContext.fsGroup=1001 \
+  --set worker.securityContext.runAsUser=1001 \
+  --set worker.securityContext.runAsGroup=1001 \
+  --set worker.securityContext.fsGroup=1001
+```
