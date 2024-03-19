@@ -6,7 +6,7 @@ from airflow.operators.bash_operator import BashOperator
 # Global level code
 os.system('hostname')
 host = os.popen('hostname').read().encode('utf-8').decode('utf-8')
-print(f"Hostname: {host}")
+
 
 default_args = {
     'owner': 'airflow',
@@ -30,5 +30,5 @@ with DAG(
     # Task to run a bash command
     run_bash_command = BashOperator(
         task_id='run_bash_command',
-        bash_command='echo "Running on host: $(hostname)"',
+        bash_command='echo "Running on host: "',
     )
